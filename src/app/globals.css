@@ -1,26 +1,126 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --coral: #e07b54;
+  --coral-dark: #d4654e;
+  --teal: #334047;
+  --teal-dark: #2a353b;
+  --tan: #ddb892;
+  --faded-copper: #b08968;
+  --coffee-bean: #7f5539;
+  --gold: #e8b86d;
+  --cream: #f5e5ca;
+  --white: #ffffff;
+
+  --background: var(--cream);
+  --foreground: var(--teal);
+  --primary: var(--coral);
+  --primary-hover: var(--coral-dark);
+  --accent: var(--gold);
+  --surface: var(--white);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-accent: var(--accent);
+  --color-surface: var(--surface);
+  --color-coral: var(--coral);
+  --color-coral-dark: var(--coral-dark);
+  --color-teal: var(--teal);
+  --color-teal-dark: var(--teal-dark);
+  --color-tan: var(--tan);
+  --color-faded-copper: var(--faded-copper);
+  --color-coffee-bean: var(--coffee-bean);
+  --color-gold: var(--gold);
+  --color-cream: var(--cream);
+  --font-sans: var(--font-quicksand);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-outfit);
+  --font-gothic: var(--font-outfit);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 900;
+}
+
+/* Anime-style glowing border effect */
+.anime-border-glow {
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --glow-size: 200px;
+  --border-width: 2px;
+  position: relative;
+  background: radial-gradient(
+    var(--glow-size) circle at var(--mouse-x) var(--mouse-y),
+    var(--coral),
+    var(--gold) 40%,
+    transparent 70%
+  );
+  border-radius: 1rem;
+  padding: var(--border-width);
+  transition: box-shadow 0.3s ease;
+}
+
+.anime-border-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.anime-border-glow:hover {
+  box-shadow: 0 0 30px rgba(224, 123, 84, 0.3);
+}
+
+.anime-border-glow:hover::before {
+  opacity: 1;
+}
+
+/* GPU-accelerated transforms for smoother animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* Ensure smooth will-change hints for animated elements */
+.animate-on-hover {
+  will-change: transform, opacity;
+}
+
+.animate-on-hover:not(:hover) {
+  will-change: auto;
+}
+
+/* Reduced motion - comprehensive fallback */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .anime-border-glow {
+    background: linear-gradient(135deg, var(--coral), var(--gold));
+  }
+
+  .anime-border-glow::before {
+    display: none;
+  }
 }
