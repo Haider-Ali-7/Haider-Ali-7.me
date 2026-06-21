@@ -213,7 +213,7 @@ export function Projects() {
           whileInView="animate"
           viewport={{ once: false, margin: '-50px' }}>
           <p className="text-xs tracking-[0.3em] uppercase text-white/50 mb-3">Featured Work</p>
-          <h2 className="font-gothic text-7xl sm:text-8xl uppercase tracking-wider text-white mb-3">Projects</h2>
+          <h2 className="font-gothic text-6xl sm:text-8xl uppercase tracking-wider text-white mb-3">Projects</h2>
           <p className="text-xs tracking-[0.25em] uppercase text-white/60">Code &mdash; Create &mdash; Conquer</p>
         </motion.div>
 
