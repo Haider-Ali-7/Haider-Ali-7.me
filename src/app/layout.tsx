@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} ${quicksand.variable} ${geistMono.variable} h-full antialiased`}>
+    <html lang="en" className={`${outfit.variable} ${quicksand.variable} ${geistMono.variable} h-full antialiased overflow-x-hidden`}>
       <body className="min-h-full flex flex-col overflow-x-hidden">{children}</body>
     </html>
   );
